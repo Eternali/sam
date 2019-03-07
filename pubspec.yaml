@@ -1,0 +1,24 @@
+name: sam
+description: A Sliding Action Menu for Flutter.
+version: 0.0.1
+author: Conrad Heidebrecht
+homepage: https://github.com/eternali/sam
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  vector_math: ^2.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+
+
+
+  uses-material-design: true
