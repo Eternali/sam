@@ -17,12 +17,21 @@ class SlidingButton extends StatefulWidget {
   final int index;
   final List<SubFAB> fabs;
   final double transDistance;
+  final double elevation;
 
-  double get fabDuration => 8 / fabs.length;
-  double get fabSpawnTime => (1 - fabDuration) / (fabs.length - 1);
+  final double fabDuration = 0.25;
+  double fabSpawnTime;
 
-
-  SlidingButton({ @required this.transDistance, this.index, this.fabs, this.controller, Key key }) : super(key: key);
+  SlidingButton({
+    @required this.transDistance,
+    this.index,
+    @required this.fabs,
+    this.controller,
+    this.elevation,
+    Key key
+  }) : super(key: key) {
+    fabSpawnTime = (0.75 / fabs.length) * index;
+  }
 
   @override
   State<SlidingButton> createState() => _SlidingButtonState();
@@ -40,8 +49,8 @@ class _SlidingButtonState extends State<SlidingButton> {
     super.initState();
     animation = CurvedAnimation(
       curve: Interval(
-        widget.index * widget.fabSpawnTime,
-        widget.index * widget.fabSpawnTime + widget.fabDuration,
+        widget.fabSpawnTime,
+        widget.fabSpawnTime + widget.fabDuration,
         curve: Curves.easeInOut
       ),
       parent: widget.controller
@@ -64,6 +73,7 @@ class _SlidingButtonState extends State<SlidingButton> {
           transform: Matrix4.translation(Vector3(0.0, -animation.value * widget.transDistance, 0.0)),
           margin: EdgeInsets.all(4.0),
           child: FloatingActionButton.extended(
+            elevation: widget.elevation ?? 0.0,
             heroTag: null,
             tooltip: fab.label,
             label: Text(

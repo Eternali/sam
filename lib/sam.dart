@@ -24,8 +24,9 @@ class SAM extends StatefulWidget {
   final Color color;
   final Color background;
   final List<SubFAB> entries;
+  final double buttonElevation;
 
-  SAM({ this.color, this.background, this.entries });
+  SAM({ this.color, this.background, this.entries, this.buttonElevation });
 
   @override
   State<SAM> createState() => _SAMState();
@@ -37,7 +38,7 @@ class _SAMState extends State<SAM> {
   void _buildSheet(BuildContext context) {
     showFancyBottomSheet(
       context: context,
-      duration: Duration(milliseconds: widget.entries.length * 20),
+      duration: Duration(milliseconds: 200 + (widget.entries.length > 50 ? 500 : widget.entries.length * 10)),
       animator: EasingFunctions.easeInOutCubic,
       builder: (AnimationController controller, Color canvasColor) => (BuildContext context) {
         return _SAMSheet(
@@ -45,7 +46,8 @@ class _SAMState extends State<SAM> {
           canvasColor: canvasColor,
           entries: widget.entries,
           background: widget.background,
-          color: widget.color
+          color: widget.color,
+          buttonElevation: widget.buttonElevation,
         );
       }
     );
@@ -74,8 +76,9 @@ class _SAMSheet extends StatefulWidget {
   final Color background;
   final List<SubFAB> entries;
   final Color canvasColor;
+  final double buttonElevation;
 
-  _SAMSheet({ this.controller, this.color, this.background, this.entries, this.canvasColor });
+  _SAMSheet({ this.controller, this.color, this.background, this.entries, this.canvasColor, this.buttonElevation });
   
   @override
   State<_SAMSheet> createState() => _SAMSheetState(controller: controller);
@@ -159,7 +162,8 @@ class _SAMSheetState extends State<_SAMSheet> {
                     transDistance: transDistance,
                     index: e,
                     fabs: widget.entries,
-                    controller: controller
+                    controller: controller,
+                    elevation: widget.buttonElevation,
                   )
                 ),
               )
