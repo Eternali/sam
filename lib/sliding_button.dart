@@ -70,10 +70,10 @@ class _SlidingButtonState extends State<SlidingButton> {
       builder: (context, child) => Opacity(
         opacity: animation.value,
         child: Container(
-          transform: Matrix4.translation(Vector3(0.0, -animation.value * widget.transDistance, 0.0)),
+          transform: Matrix4.translation(Vector3(0, -animation.value * widget.transDistance, 0)),
           margin: EdgeInsets.all(4.0),
           child: FloatingActionButton.extended(
-            elevation: widget.elevation ?? 0.0,
+            elevation: widget.elevation ?? 0,
             heroTag: null,
             tooltip: fab.label,
             label: Text(
