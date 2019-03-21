@@ -144,7 +144,8 @@ class _SAMSheetState extends State<_SAMSheet> {
           children: <Widget>[
             Container(
               // watch sheet margin bottom cause bottom items shifted up
-              padding: EdgeInsets.only(top: transDistance + 10.0, left: 8.0, right: 8.0, bottom: 10.0),
+              // padding: EdgeInsets.only(top: transDistance + 10, left: 8, right: 8, bottom: 10),
+              padding: EdgeInsets.only(top: 20, left: 8, right: 8, bottom: 20),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: widget.background ?? widget.canvasColor,

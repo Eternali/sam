@@ -70,8 +70,8 @@ class _SlidingButtonState extends State<SlidingButton> {
       builder: (context, child) => Opacity(
         opacity: animation.value,
         child: Container(
-          transform: Matrix4.translation(Vector3(0, -animation.value * widget.transDistance, 0)),
-          margin: EdgeInsets.all(4.0),
+          // transform: Matrix4.translation(Vector3(0, -animation.value * widget.transDistance, 0)),
+          margin: const EdgeInsets.all(4),
           child: FloatingActionButton.extended(
             elevation: widget.elevation ?? 0,
             heroTag: null,
@@ -82,7 +82,7 @@ class _SlidingButtonState extends State<SlidingButton> {
             backgroundColor: fab.color,
             icon: Icon(fab.icon),
             onPressed: () {
-              // _controller.reverse();
+              widget.controller.reverse();
               fab.onPressed();
             },
           ),
