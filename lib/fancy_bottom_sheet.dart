@@ -1,7 +1,7 @@
 /// Credits to https://gist.github.com/gildaswise/5d1b7bee327a9dd6cc5bcd1bbc72316a
 /// which this is heavily based off of.
 
-part of sam;
+import 'package:flutter/material.dart';
 
 typedef FancyBottomSheetBuilder = WidgetBuilder Function(AnimationController controller, Color canvasColor);
 typedef Animator = double Function(double t);

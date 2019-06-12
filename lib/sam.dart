@@ -1,12 +1,10 @@
 library sam;
 
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math_64.dart' show Vector3;
 
-part 'easing_functions.dart';
-part 'fancy_bottom_sheet.dart';
-part 'sliding_button.dart';
+import 'easing_functions.dart';
+import 'fancy_bottom_sheet.dart';
+import 'sliding_button.dart';
 
 class _CustomBehavior extends ScrollBehavior {
 

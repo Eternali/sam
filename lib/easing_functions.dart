@@ -1,5 +1,3 @@
-part of sam;
-
 class EasingFunctions {
 
     static double easeInOutCubic(double t) =>
