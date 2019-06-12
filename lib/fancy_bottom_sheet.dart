@@ -11,6 +11,7 @@ Future<T> showFancyBottomSheet<T>({
   @required FancyBottomSheetBuilder builder,
   Duration duration = const Duration(milliseconds: 200),
   Animator animator,
+  Color dimmer,
 }) {
   assert(context != null);
   assert(builder != null);
@@ -20,6 +21,7 @@ Future<T> showFancyBottomSheet<T>({
       duration: duration,
       builder: builder,
       animator: animator,
+      barrierColor: dimmer ?? Colors.black54,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
     )
   );
@@ -59,9 +61,15 @@ class _FancyModalRoute<T> extends PopupRoute<T> {
     this.duration = const Duration(milliseconds: 200),
     this.builder,
     this.barrierLabel,
+    Color barrierColor = Colors.black54,
     this.animator,
     RouteSettings settings,
-  }) : super(settings: settings);
+  }) : _barrierColor = barrierColor, super(settings: settings) {
+    // Flutter does not allow barrierColor to be transparent. Technically we are using a *modal*
+    // sheet which, according to the material design spec, means the user should be focused on it.
+    assert(barrierColor != null);
+    assert(barrierColor.alpha > 0);
+  }
 
   final Duration duration;
   final FancyBottomSheetBuilder builder;
@@ -74,8 +82,9 @@ class _FancyModalRoute<T> extends PopupRoute<T> {
   @override
   bool get barrierDismissible => true;
 
+  Color _barrierColor;
   @override
-  Color get barrierColor => Colors.black54;
+  Color get barrierColor => _barrierColor;
 
   @override
   AnimationController createAnimationController() {
